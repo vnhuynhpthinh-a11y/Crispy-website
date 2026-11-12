@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRISPY - Fast Food & Drinks</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div id="dau-trang"></div>
+
+<header>
+    <a href="12A10.html#dau-trang">
+        <img src="FF Logo.png" alt="Logo CRISPY">
+    </a>
+
+    <nav>
+        <a href="#dau-trang">Trang chủ</a>
+
+        <div class="timhieu">
+            <a href="#gioithieu">
+                Tìm hiểu <span class="mui-ten-menu">▾</span>
+            </a>
+
+            <div class="khung-thong-tin">
+                <a href="#gioithieu">Giới thiệu</a>
+                <a href="#nhacungcap">Nhà cung cấp</a>
+                <a href="#antoan">An toàn thực phẩm</a>
+            </div>
+        </div>
+
+        <div class="thucdon-menu">
+            <a href="TD.html" class="link-thuc-don">
+                Thực đơn <span class="mui-ten-menu">▾</span>
+            </a>
+
+            <div class="khung-thuc-don">
+                <a href="TD.html#ga-ran">Gà rán</a>
+                <a href="TD.html#hamburger">Hamburger</a>
+                <a href="TD.html#khoai-tay-chien">Khoai tây chiên</a>
+                <a href="TD.html#my-y">Mỳ Ý</a>
+                <a href="TD.html#salad">Salad</a>
+                <a href="TD.html#do-uong">Đồ uống</a>
+                <a href="TD.html#combo">Combo hấp dẫn</a>
+            </div>
+        </div>
+
+        <a href="LH.html">Liên hệ</a>
+
+        <a href="DM.html" class="datmon">
+            <span class="icon">🛒</span>
+            <span class="text">
+                <small>Thức ăn nhanh</small>
+                Đặt Món
+            </span>
+        </a>
+    </nav>
+</header>
+
+
+<!-- BANNER -->
+<div class="banner">
+    <img src="Banner.jfif" alt="CRISPY Fast Food">
+</div>
+
+
+<!-- GIỚI THIỆU -->
+<section id="gioithieu" class="gioi-thieu-moi">
+
+    <!-- CỘT 1: NỘI DUNG GIỚI THIỆU -->
+    <div class="gioi-thieu-noi-dung">
+
+        <span class="nhan-gioi-thieu">WELCOME TO CRISPY</span>
+
+        <h2>GIỚI THIỆU CRISPY</h2>
+
+        <p>
+            <b>CRISPY – FAST FOOD & DRINKS</b> là cửa hàng chuyên cung cấp
+            các món ăn nhanh và đồ uống thơm ngon, hấp dẫn, đáp ứng nhu
+            cầu ăn uống đa dạng của khách hàng.
+
+            Với thực đơn phong phú gồm gà rán giòn rụm, hamburger,
+            khoai tây chiên cùng nhiều loại nước giải khát và đồ uống,
+            CRISPY mong muốn mang đến những trải nghiệm ẩm thực tiện lợi
+            và thú vị.
+
+            Cửa hàng luôn chú trọng chất lượng nguyên liệu, vệ sinh
+            an toàn thực phẩm và phong cách phục vụ thân thiện.
+        </p>
+
+        <div class="slogan-gioi-thieu">
+            “Ngon từng món, mát từng ngụm, vui trọn khoảnh khắc!”
+        </div>
+
+    </div>
+
+
+    <!-- CỘT 2: GIÁ TRỊ CRISPY -->
+    <div class="gia-tri-crispy">
+
+        <div class="the-gia-tri">
+            <span class="icon-gia-tri">🍗</span>
+            <div>
+                <h3>ĐA DẠNG</h3>
+                <p>Thực đơn phong phú với nhiều món ăn và đồ uống hấp dẫn.</p>
+            </div>
+        </div>
+
+        <div class="the-gia-tri">
+            <span class="icon-gia-tri">❤️</span>
+            <div>
+                <h3>TẬN TÂM</h3>
+                <p>Luôn hướng đến trải nghiệm tiện lợi và thân thiện.</p>
+            </div>
+        </div>
+
+        <div class="the-gia-tri">
+            <span class="icon-gia-tri">🛡️</span>
+            <div>
+                <h3>CHẤT LƯỢNG</h3>
+                <p>Chú trọng nguyên liệu và vệ sinh an toàn thực phẩm.</p>
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- XEM THÊM: TRẢI RỘNG TOÀN SECTION -->
+    <div class="xem-them">
+
+        <button class="nut-xem-them"
+                id="nutXemThem"
+                type="button"
+                aria-expanded="false"
+                aria-controls="noiDungMoRong"
+                onclick="toggleXemThem()">
+
+            <span id="chuXemThem">Xem thêm</span>
+            <span class="mui-ten-mo-rong">⌄</span>
+        </button>
+
+
+        <div class="noi-dung-mo-rong" id="noiDungMoRong">
+
+            <div class="noi-dung-mo-rong-ben-trong">
+
+                <!-- KHÔNG GIAN CRISPY -->
+                <div class="muc-mo-rong">
+
+                    <h3>KHÔNG GIAN CRISPY</h3>
+
+                    <p>
+                        Khám phá không gian thưởng thức ẩm thực
+                        và những góc trải nghiệm tại Crispy.
+                    </p>
+
+                    <div class="luoi-anh-xem-them">
+
+                        <div class="anh-xem-them" onclick="phongToAnh(this)">
+                            <img src="Trc.png" alt="Không gian Crispy">
+                            <p>Mặt tiền cũ</p>
+                        </div>
+
+                        <div class="anh-xem-them" onclick="phongToAnh(this)">
+                            <img src="Ms.png" alt="Không gian bên trong">
+                            <p>Mặt tiền mới</p>
+                        </div>
+
+                        <div class="anh-xem-them" onclick="phongToAnh(this)">
+                            <img src="T1.png" alt="Khu vực thưởng thức tầng 1">
+                            <p>Khu vực thưởng thức tầng 1</p>
+                        </div>
+						
+						<div class="anh-xem-them" onclick="phongToAnh(this)">
+                            <img src="T1-2.png" alt="Khu vực thưởng thức tầng 1">
+                            <p>Khu vực thưởng thức tầng 1</p>
+                        </div>
+
+                        <div class="anh-xem-them" onclick="phongToAnh(this)">
+                            <img src="T2.png" alt="Khu vực thưởng thức tầng 2">
+                            <p>Khu vực thưởng thức tầng 2</p>
+                        </div>
+						
+						<div class="anh-xem-them" onclick="phongToAnh(this)">
+                            <img src="T2-2.png" alt="Khu vực thưởng thức tầng 2">
+                            <p>Khu vực thưởng thức tầng 2</p>
+                        </div>
+
+                        <div class="anh-xem-them" onclick="phongToAnh(this)">
+                            <img src="B1.png" alt="Không gian nhà bếp">
+                            <p>Khu vực nhà bếp</p>
+                        </div>
+
+                        <div class="anh-xem-them" onclick="phongToAnh(this)">
+                            <img src="B2.png" alt="Không gian nhà bếp">
+                            <p>Khu vực nhà bếp</p>
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <!-- SỰ KIỆN – NGÀY LỄ -->
+                <div class="muc-mo-rong">
+
+                    <h3>SỰ KIỆN – NGÀY LỄ</h3>
+
+                    <p>
+                        Cùng Crispy lưu giữ những khoảnh khắc
+                        đặc biệt qua các dịp lễ và sự kiện.
+                    </p>
+
+                    <div class="luoi-anh-xem-them">
+
+						<div class="anh-xem-them" onclick="phongToAnh(this)">
+                            <img src="Tet.png" alt="Tết">
+                            <p>Tết</p>
+                        </div>
+						
+						<div class="anh-xem-them" onclick="phongToAnh(this)">
+                            <img src="TT.png" alt="Trung thu">
+                            <p>Trung thu</p>
+                        </div>
+
+                        <div class="anh-xem-them" onclick="phongToAnh(this)">
+                            <img src="Hall.png" alt="Halloween">
+                            <p>Halloween</p>
+                        </div>
+
+                        <div class="anh-xem-them" onclick="phongToAnh(this)">
+                            <img src="Chris.png" alt="Giáng sinh">
+                            <p>Giáng sinh</p>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <!-- KHUNG PHÓNG TO ẢNH -->
+    <div class="lop-phong-to"
+         id="lopPhongTo"
+         onclick="dongPhongTo(event)">
+
+        <button class="dong-phong-to"
+                type="button"
+                onclick="dongPhongTo(event)">×</button>
+
+        <img id="anhPhongTo" src="" alt="Ảnh phóng to">
+
+    </div>
+
+</section>
+
+
+
+<!-- NHÀ CUNG CẤP -->
+<div class="nhacungcap ncc-moi" id="nhacungcap">
+
+    <div class="tieu-de-phu">
+        <span class="nhan-gioi-thieu">INGREDIENT SOURCES</span>
+        <h2>NHÀ CUNG CẤP</h2>
+        <p>
+            CRISPY chú trọng lựa chọn nguồn nguyên liệu có xuất xứ
+            rõ ràng và điều kiện bảo quản phù hợp.
+        </p>
+    </div>
+
+    <div class="luoi-ncc">
+
+        <div class="the-ncc">
+            <div class="anh-ncc-moi">
+                <img src="Thit.jfif" alt="Thịt và gia cầm">
+                <span>01</span>
+            </div>
+
+            <div class="noi-dung-ncc-moi">
+                <h3>Thịt và gia cầm</h3>
+                <p>
+                    CRISPY lựa chọn nguồn cung cấp thịt và gia cầm
+                    có nguồn gốc rõ ràng, đảm bảo độ tươi ngon và
+                    chất lượng nguyên liệu. Thịt gà, thịt heo được
+                    kiểm tra nguồn gốc, điều kiện bảo quản, hạn sử dụng
+                    và giấy tờ kiểm định cần thiết trước khi chế biến.
+                </p>
+            </div>
+        </div>
+
+
+        <div class="the-ncc">
+            <div class="anh-ncc-moi">
+                <img src="RC.jfif" alt="Rau củ quả">
+                <span>02</span>
+            </div>
+
+            <div class="noi-dung-ncc-moi">
+                <h3>Trang trại rau củ quả</h3>
+                <p>
+                    Rau xanh, cà chua, khoai tây và các nguyên liệu
+                    nông sản được lựa chọn từ những đơn vị cung ứng
+                    có quy trình sản xuất rõ ràng. Nguyên liệu cần
+                    đảm bảo độ tươi, không dập úng và được kiểm tra
+                    chất lượng trước khi nhập hàng.
+                </p>
+            </div>
+        </div>
+
+
+        <div class="the-ncc">
+            <div class="anh-ncc-moi">
+                <img src="DU.jfif" alt="Đồ uống">
+                <span>03</span>
+            </div>
+
+            <div class="noi-dung-ncc-moi">
+                <h3>Nhà cung cấp đồ uống</h3>
+                <p>
+                    CRISPY lựa chọn các đơn vị phân phối đồ uống
+                    cung cấp nước đóng chai, nước ngọt và sản phẩm
+                    giải khát đa dạng. Sản phẩm cần có nhãn mác,
+                    nguồn gốc, hạn sử dụng rõ ràng và bao bì nguyên vẹn.
+                </p>
+            </div>
+        </div>
+
+
+        <div class="the-ncc">
+            <div class="anh-ncc-moi">
+                <img src="ST.jfif" alt="Nguyên liệu phụ trợ">
+                <span>04</span>
+            </div>
+
+            <div class="noi-dung-ncc-moi">
+                <h3>Đơn vị phân phối nguyên liệu</h3>
+                <p>
+                    Các nguyên liệu phụ trợ như gia vị, nước sốt,
+                    bột chiên và vật dụng đóng gói được lựa chọn
+                    từ những đơn vị phân phối đáng tin cậy.
+                    Sản phẩm được kiểm tra nhãn mác, hạn sử dụng
+                    và tình trạng bao bì trước khi sử dụng.
+                </p>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+<!-- AN TOÀN THỰC PHẨM -->
+<section id="antoan" class="antoan-moi">
+
+    <div class="tieu-de-phu">
+        <span class="nhan-gioi-thieu">FOOD SAFETY</span>
+        <h2>AN TOÀN THỰC PHẨM</h2>
+
+        <p>
+            Chất lượng và an toàn thực phẩm luôn là những yếu tố
+            được CRISPY chú trọng trong quá trình chuẩn bị và chế biến.
+        </p>
+    </div>
+
+    <div class="luoi-attp">
+
+        <div class="the-attp">
+            <span class="icon-attp">🔎</span>
+            <h3>Nguồn gốc rõ ràng</h3>
+            <p>
+                Kiểm tra nguồn gốc, chất lượng và hạn sử dụng
+                của nguyên liệu trước khi đưa vào chế biến.
+            </p>
+        </div>
+
+        <div class="the-attp">
+            <span class="icon-attp">❄️</span>
+            <h3>Bảo quản phù hợp</h3>
+            <p>
+                Bảo quản nguyên liệu theo điều kiện thích hợp,
+                hạn chế ảnh hưởng đến chất lượng thực phẩm.
+            </p>
+        </div>
+
+        <div class="the-attp">
+            <span class="icon-attp">✨</span>
+            <h3>Vệ sinh chế biến</h3>
+            <p>
+                Vệ sinh thường xuyên khu vực chế biến,
+                dụng cụ nhà bếp và thiết bị phục vụ.
+            </p>
+        </div>
+
+        <div class="the-attp">
+            <span class="icon-attp">🧼</span>
+            <h3>Vệ sinh cá nhân</h3>
+            <p>
+                Tuân thủ các quy định về vệ sinh cá nhân
+                trong quá trình chuẩn bị và chế biến món ăn.
+            </p>
+        </div>
+
+    </div>
+
+    <div class="cam-ket-attp">
+        <span>🛡️</span>
+        <p>
+            An toàn thực phẩm là ưu tiên trong từng công đoạn
+            chuẩn bị và chế biến tại CRISPY.
+        </p>
+    </div>
+
+</section>
+
+
+
+<!-- FOOTER -->
+<footer class="footer">
+
+    <div class="footer-container">
+
+        <div class="footer-left">
+
+            <div class="footer-column">
+                <h3>KHÁM PHÁ CRISPY</h3>
+                <a href="#dau-trang">Trang chủ</a>
+                <a href="#gioithieu">Giới thiệu</a>
+                <a href="#nhacungcap">Nhà cung cấp</a>
+                <a href="#antoan">An toàn thực phẩm</a>
+                <a href="LH.html">Liên hệ</a>
+            </div>
+
+            <div class="footer-column">
+                <h3>THỰC ĐƠN</h3>
+                <a href="TD.html#ga-ran">Gà rán</a>
+                <a href="TD.html#hamburger">Hamburger</a>
+                <a href="TD.html#khoai-tay-chien">Khoai tây chiên</a>
+                <a href="TD.html#my-y">Mỳ Ý</a>
+                <a href="TD.html#salad">Salad</a>
+                <a href="TD.html#do-uong">Đồ uống</a>
+                <a href="TD.html#combo">Combo hấp dẫn</a>
+            </div>
+
+            <div class="footer-column">
+                <h3>THÀNH VIÊN NHÓM</h3>
+                <p>36 – Huỳnh Phúc Thịnh</p>
+                <p>18 – Ngô Quý Long</p>
+                <p>35 – Thạch Nguyễn Ngọc Thảo</p>
+                <p>42 – Đinh Đào Duy Tùng</p>
+            </div>
+
+        </div>
+
+
+        <div class="footer-about">
+            <h3>VỀ CRISPY</h3>
+
+            <p>
+                CRISPY – FAST FOOD & DRINKS mang đến
+                những món ăn nhanh và đồ uống thơm ngon,
+                hấp dẫn.
+            </p>
+
+            <p class="footer-slogan">
+                "Ngon từng món, mát từng ngụm, vui trọn khoảnh khắc!"
+            </p>
+        </div>
+
+    </div>
+
+
+    <div class="footer-bottom">
+        <p>© 2026 CRISPY – FAST FOOD & DRINKS</p>
+        <p>Website được thực hiện bởi nhóm học sinh Lớp: 12A10</p>
+    </div>
+
+</footer>
+
+
+
+<!-- NÚT LÊN ĐẦU TRANG -->
+<a href="#dau-trang" class="len-dau" title="Lên đầu trang">
+    <span></span>
+</a>
+
+
+
+<script>
+
+// ========================================
+// 1. XỬ LÝ MENU THẢ XUỐNG
+// ========================================
+
+const cacMenu = document.querySelectorAll(
+    ".timhieu, .thucdon-menu"
+);
+
+cacMenu.forEach(function(menu) {
+
+    menu.addEventListener("mouseenter", function() {
+        menu.classList.add("mo");
+    });
+
+    menu.addEventListener("mouseleave", function() {
+        menu.classList.remove("mo");
+    });
+
+});
+
+
+// ========================================
+// 2. ĐÓNG MENU KHI CHỌN DANH MỤC
+// ========================================
+
+document.querySelectorAll(
+    ".khung-thong-tin a, .khung-thuc-don a"
+).forEach(function(link) {
+
+    link.addEventListener("click", function() {
+
+        cacMenu.forEach(function(menu) {
+            menu.classList.remove("mo");
+        });
+
+    });
+
+});
+
+
+// ========================================
+// 3. GIỮ LIÊN KẾT NEO KHI TẢI TRANG
+// ========================================
+
+if ("scrollRestoration" in history) {
+    history.scrollRestoration = "manual";
+}
+
+window.addEventListener("load", function() {
+
+    if (!window.location.hash) {
+
+        window.scrollTo(0, 0);
+
+        requestAnimationFrame(function() {
+            window.scrollTo(0, 0);
+        });
+
+    }
+
+});
+
+
+// ========================================
+// 4. MỞ RỘNG / THU GỌN XEM THÊM
+// ========================================
+
+function toggleXemThem() {
+
+    const noiDung = document.getElementById("noiDungMoRong");
+    const nut = document.getElementById("nutXemThem");
+    const chu = document.getElementById("chuXemThem");
+
+    const dangMo = noiDung.classList.toggle("mo-rong");
+
+    nut.classList.toggle("mo-rong", dangMo);
+
+    nut.setAttribute("aria-expanded", dangMo);
+
+    chu.textContent = dangMo ? "Thu gọn" : "Xem thêm";
+
+}
+
+
+// ========================================
+// 5. PHÓNG TO ẢNH
+// ========================================
+
+function phongToAnh(theAnh) {
+
+    const anh = theAnh.querySelector("img");
+
+    document.getElementById("anhPhongTo").src = anh.src;
+
+    document.getElementById("lopPhongTo").classList.add("hien");
+
+    document.body.classList.add("khoa-cuon");
+
+}
+
+
+// ========================================
+// 6. ĐÓNG ẢNH PHÓNG TO
+// ========================================
+
+function dongPhongTo(event) {
+
+    if (
+        event.target.id === "lopPhongTo" ||
+        event.target.classList.contains("dong-phong-to")
+    ) {
+
+        document.getElementById("lopPhongTo").classList.remove("hien");
+
+        document.getElementById("anhPhongTo").src = "";
+
+        document.body.classList.remove("khoa-cuon");
+
+    }
+
+}
+
+// ========================================
+// 8. ĐÓNG XEM THÊM KHI BẤM LOGO / TRANG CHỦ
+// ========================================
+
+function dongXemThem() {
+
+    const noiDung = document.getElementById("noiDungMoRong");
+    const nut = document.getElementById("nutXemThem");
+    const chu = document.getElementById("chuXemThem");
+
+    if (noiDung.classList.contains("mo-rong")) {
+
+        noiDung.classList.remove("mo-rong");
+        nut.classList.remove("mo-rong");
+
+        nut.setAttribute("aria-expanded", "false");
+        chu.textContent = "Xem thêm";
+
+    }
+}
+
+
+// Bấm Trang chủ
+document.querySelector('nav a[href="#dau-trang"]')
+    .addEventListener("click", dongXemThem);
+
+
+// Bấm logo CRISPY
+document.querySelector('header > a')
+    .addEventListener("click", dongXemThem);
+
+</script>
+
+</body>
+</html>
