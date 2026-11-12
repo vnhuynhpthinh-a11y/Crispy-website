@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thực đơn - CRISPY</title>
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .nut-them-gio {
+            width: 100%;
+            padding: 11px 8px;
+            margin-top: 12px;
+            border: 1px solid #542b16;
+            border-radius: 25px;
+            background: #542b16;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: .25s;
+        }
+
+        .nut-them-gio:hover {
+            background: #e53935;
+            border-color: #e53935;
+            transform: translateY(-2px);
+        }
+
+        .nut-them-gio.da-them {
+            background: #2e8b57;
+            border-color: #2e8b57;
+        }
+
+        .nut-them-gio:active {
+            transform: scale(.96);
+        }
+
+        .thong-bao-gio {
+            position: fixed;
+            right: 25px;
+            bottom: 25px;
+            z-index: 10001;
+            padding: 14px 22px;
+            border-radius: 10px;
+            background: #542b16;
+            color: white;
+            box-shadow: 0 5px 20px #0002;
+            opacity: 0;
+            transform: translateY(20px);
+            pointer-events: none;
+            transition: .3s;
+        }
+
+        .thong-bao-gio.hien {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .datmon {
+            position: relative;
+        }
+
+        .so-mon-gio {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            min-width: 21px;
+            height: 21px;
+            padding: 0 5px;
+            border-radius: 50%;
+            background: #e53935;
+            color: white;
+            font-size: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hop-chi-tiet .gia-chi-tiet {
+            margin-top: 20px;
+        }
+
+        @media (max-width: 600px) {
+            .thong-bao-gio {
+                right: 12px;
+                bottom: 12px;
+                left: 12px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div id="dau-trang"></div>
+
+<!-- HEADER -->
+<header>
+    <a href="12A10.html#dau-trang">
+        <img src="FF Logo.png" alt="Logo CRISPY">
+    </a>
+
+    <nav>
+        <a href="12A10.html#dau-trang">Trang chủ</a>
+
+        <div class="timhieu">
+            <a href="12A10.html#gioithieu">
+                Tìm hiểu <span class="mui-ten-menu">▾</span>
+            </a>
+            <div class="khung-thong-tin">
+                <a href="12A10.html#gioithieu">Giới thiệu</a>
+                <a href="12A10.html#nhacungcap">Nhà cung cấp</a>
+                <a href="12A10.html#antoan">An toàn thực phẩm</a>
+            </div>
+        </div>
+
+        <div class="thucdon-menu">
+            <a href="TD.html" class="link-thuc-don">
+                Thực đơn <span class="mui-ten-menu">▾</span>
+            </a>
+            <div class="khung-thuc-don">
+                <a href="#ga-ran">Gà rán</a>
+                <a href="#hamburger">Hamburger</a>
+                <a href="#khoai-tay-chien">Khoai tây chiên</a>
+                <a href="#my-y">Mỳ Ý</a>
+                <a href="#salad">Salad</a>
+                <a href="#do-uong">Đồ uống</a>
+                <a href="#combo">Combo hấp dẫn</a>
+            </div>
+        </div>
+
+        <a href="LH.html">Liên hệ</a>
+
+        <a href="DM.html" class="datmon">
+            <span class="icon">🛒</span>
+            <span class="text">
+                <small>Thức ăn nhanh</small>
+                Đặt Món
+            </span>
+            <span class="so-mon-gio" id="soMonGio">0</span>
+        </a>
+    </nav>
+</header>
+
+<!-- BANNER ƯU ĐÃI -->
+<div class="banner">
+    <img src="UD.png" alt="Ưu đãi giảm ngay 10K tại Crispy">
+</div>
+
+
+<!-- TIÊU ĐỀ -->
+<div class="dau-trang-thuc-don">
+    <h1>THỰC ĐƠN CRISPY</h1>
+    <p>Khám phá các món ăn và đồ uống tại CRISPY</p>
+</div>
+
+
+<!-- CÁC DANH MỤC MÓN ĂN -->
+<div id="noiDungThucDon"></div>
+
+
+<!-- CỬA SỔ CHI TIẾT -->
+<div class="lop-phu" id="lopPhu" onclick="dongChiTiet(event)">
+    <div class="hop-chi-tiet">
+
+        <button class="nut-dong" onclick="dongChiTiet()">×</button>
+
+        <h2 id="tenChiTiet"></h2>
+
+        <div class="canh-bao-di-ung" id="canhBao"></div>
+
+        <div class="chi-tiet-noi-dung">
+            <div class="khu-vuc-thanh-phan">
+                <h3>THÀNH PHẦN</h3>
+                <ul id="thanhPhan"></ul>
+            </div>
+
+            <div class="khu-vuc-anh">
+                <img id="anhChiTiet" src="" alt="Hình ảnh món ăn">
+            </div>
+        </div>
+
+        <div class="gia-chi-tiet">
+            <span>Giá ưu đãi:</span>
+            <strong id="giaChiTiet"></strong>
+        </div>
+
+    </div>
+</div>
+
+
+<!-- THÔNG BÁO -->
+<div class="thong-bao-gio" id="thongBaoGio">
+    ✓ Đã thêm món vào giỏ hàng!
+</div>
+
+
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="footer-container">
+
+        <div class="footer-left">
+
+            <div class="footer-column">
+                <h3>KHÁM PHÁ CRISPY</h3>
+                <a href="12A10.html#dau-trang">Trang chủ</a>
+                <a href="12A10.html#gioithieu">Giới thiệu</a>
+                <a href="12A10.html#nhacungcap">Nhà cung cấp</a>
+                <a href="12A10.html#antoan">An toàn thực phẩm</a>
+                <a href="LH.html">Liên hệ</a>
+            </div>
+
+            <div class="footer-column">
+                <h3>THỰC ĐƠN</h3>
+                <a href="#ga-ran">Gà rán</a>
+                <a href="#hamburger">Hamburger</a>
+                <a href="#khoai-tay-chien">Khoai tây chiên</a>
+                <a href="#my-y">Mỳ Ý</a>
+                <a href="#salad">Salad</a>
+                <a href="#do-uong">Đồ uống</a>
+                <a href="#combo">Combo hấp dẫn</a>
+            </div>
+
+            <div class="footer-column">
+                <h3>THÀNH VIÊN NHÓM</h3>
+                <p>36 – Huỳnh Phúc Thịnh</p>
+                <p>18 – Ngô Quý Long</p>
+                <p>35 – Thạch Nguyễn Ngọc Thảo</p>
+                <p>42 – Đinh Đào Duy Tùng</p>
+                <p class="lop-nhom">12A10</p>
+            </div>
+
+        </div>
+
+        <div class="footer-about">
+            <h3>VỀ CRISPY</h3>
+            <p>
+                CRISPY – FAST FOOD & DRINKS mang đến
+                những món ăn nhanh và đồ uống thơm ngon,
+                hấp dẫn.
+            </p>
+            <p class="footer-slogan">
+                "Ngon từng món, mát từng ngụm, vui trọn khoảnh khắc!"
+            </p>
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+        <p>© 2026 CRISPY – FAST FOOD & DRINKS</p>
+        <p>Website được thực hiện bởi nhóm học sinh Lớp: 12A10</p>
+    </div>
+</footer>
+
+<a href="#dau-trang" class="len-dau" title="Lên đầu trang">
+    <span></span>
+</a>
+
+
+<script>
+    // DỮ LIỆU THỰC ĐƠN
+    const danhSachDuLieu = [
+        {
+            danhMuc: "GÀ RÁN",
+            id: "ga-ran",
+            mon: [
+                {
+                    name: "Fried Chicken Drumsticks – Đùi gà rán",
+                    title: "Đùi gà rán",
+                    price: "35.000đ",
+                    old: "45.000đ",
+                    image: "Ga.jfif",
+                    warning: "CẢNH BÁO DỊ ỨNG: Có thể chứa gluten, trứng và sữa.",
+                    ingredients: ["Đùi gà", "Bột mì", "Bột bắp", "Trứng gà", "Sữa tươi", "Muối, tiêu", "Dầu ăn"]
+                },
+                {
+                    name: "Korean Fried Chicken Wings – Cánh gà rán Hàn Quốc",
+                    title: "Cánh gà rán Hàn Quốc",
+                    price: "35.000đ",
+                    old: "45.000đ",
+                    image: "GaH.jpg",
+                    warning: "CẢNH BÁO DỊ ỨNG: Có thể chứa gluten, đậu nành và mè.",
+                    ingredients: ["Cánh gà", "Bột chiên giòn", "Bột bắp", "Tỏi", "Nước tương", "Mật ong", "Tương ớt Hàn Quốc", "Mè rang"]
+                }
+            ]
+        },
+        {
+            danhMuc: "HAMBURGER",
+            id: "hamburger",
+            mon: [
+                {
+                    name: "Beef Cheeseburger – Hamburger bò phô mai",
+                    title: "Hamburger bò phô mai",
+                    price: "35.000đ",
+                    old: "45.000đ",
+                    image: "HamB.jfif",
+                    warning: "CẢNH BÁO DỊ ỨNG: Có thể chứa gluten, sữa và trứng.",
+                    ingredients: ["Bánh mì hamburger", "Thịt bò xay", "Phô mai cheddar", "Rau xà lách", "Cà chua", "Hành tây", "Mayonnaise"]
+                },
+                {
+                    name: "Chicken Burger – Hamburger gà",
+                    title: "Hamburger gà",
+                    price: "30.000đ",
+                    old: "40.000đ",
+                    image: "HamG.jpg",
+                    warning: "CẢNH BÁO DỊ ỨNG: Có thể chứa gluten, sữa và trứng.",
+                    ingredients: ["Bánh mì hamburger", "Thịt ức gà", "Bột chiên giòn", "Phô mai cheddar", "Rau xà lách", "Cà chua", "Mayonnaise"]
+                }
+            ]
+        },
+        {
+            danhMuc: "KHOAI TÂY CHIÊN",
+            id: "khoai-tay-chien",
+            mon: [
+                {
+                    name: "Classic French Fries – Khoai tây chiên truyền thống",
+                    title: "Khoai tây chiên truyền thống",
+                    price: "15.000đ",
+                    old: "25.000đ",
+                    image: "KTC.jpg",
+                    warning: "CẢNH BÁO DỊ ỨNG: Thành phần chính không có chất gây dị ứng phổ biến được liệt kê.",
+                    ingredients: ["Khoai tây tươi", "Dầu ăn", "Muối", "Bơ", "Bột bắp"]
+                },
+                {
+                    name: "Cheese Shake French Fries – Khoai tây lắc phô mai",
+                    title: "Khoai tây lắc phô mai",
+                    price: "15.000đ",
+                    old: "25.000đ",
+                    image: "KTC-PM.jpg",
+                    warning: "CẢNH BÁO DỊ ỨNG: Có thể chứa sữa từ bột phô mai và bơ.",
+                    ingredients: ["Khoai tây tươi", "Bột phô mai Cheddar", "Dầu ăn", "Muối", "Bơ", "Bột bắp"]
+                }
+            ]
+        },
+        {
+            danhMuc: "MỲ Ý",
+            id: "my-y",
+            mon: [
+                {
+                    name: "Spaghetti Bolognese – Mỳ Ý sốt bò bằm",
+                    title: "Mỳ Ý sốt bò bằm",
+                    price: "30.000đ",
+                    old: "40.000đ",
+                    image: "MY.jpg",
+                    warning: "CẢNH BÁO DỊ ỨNG: Có thể chứa gluten từ mỳ và sữa từ phô mai.",
+                    ingredients: ["Mỳ spaghetti", "Thịt bò bầm", "Cà chua", "Hành tây", "Tỏi", "Dầu ô liu", "Phô mai Parmesan", "Muối, tiêu"]
+                },
+                {
+                    name: "Spaghetti Carbonara – Mỳ Ý sốt kem",
+                    title: "Mỳ Ý sốt kem",
+                    price: "30.000đ",
+                    old: "40.000đ",
+                    image: "MYK.jpg",
+                    warning: "CẢNH BÁO DỊ ỨNG: Có thể chứa gluten, trứng và sữa.",
+                    ingredients: ["Mỳ spaghetti", "Thịt xông khói", "Trứng gà", "Phô mai Parmesan", "Kem tươi", "Tỏi", "Tiêu đen"]
+                }
+            ]
+        },
+        {
+            danhMuc: "SALAD",
+            id: "salad",
+            mon: [
+                {
+                    name: "Caesar Salad – Salad Caesar",
+                    title: "Salad Caesar",
+                    price: "25.000đ",
+                    old: "35.000đ",
+                    image: "SC.jpg",
+                    warning: "CẢNH BÁO DỊ ỨNG: Có thể chứa sữa, gluten và trứng trong sốt Caesar.",
+                    ingredients: ["Rau xà lách Romaine", "Thịt ức gà", "Bánh mì nướng giòn", "Phô mai Parmesan", "Sốt Caesar", "Nước cốt chanh"]
+                },
+                {
+                    name: "Greek Salad – Salad Hy Lạp",
+                    title: "Salad Hy Lạp",
+                    price: "25.000đ",
+                    old: "35.000đ",
+                    image: "SG.jpg",
+                    warning: "CẢNH BÁO DỊ ỨNG: Có thể chứa sữa từ phô mai Feta.",
+                    ingredients: ["Dưa chuột", "Cà chua", "Hành tây đỏ", "Phô mai Feta", "Ô liu", "Ớt chuông", "Dầu ô liu", "Nước cốt chanh"]
+                }
+            ]
+        },
+        {
+            danhMuc: "ĐỒ UỐNG",
+            id: "do-uong",
+            mon: [
+                {
+                    name: "Strawberry Smoothie – Sinh tố dâu tây",
+                    title: "Sinh tố dâu tây",
+                    price: "20.000đ",
+                    old: "30.000đ",
+                    image: "STD.jpg",
+                    warning: "CẢNH BÁO DỊ ỨNG: Có thể chứa sữa.",
+                    ingredients: ["Dâu tây tươi", "Sữa tươi", "Sữa đặc", "Đá viên", "Đường"]
+                },
+                {
+                    name: "Lemon Iced Tea – Trà chanh đá",
+                    title: "Trà chanh đá",
+                    price: "20.000đ",
+                    old: "30.000đ",
+                    image: "TC.jpg",
+                    warning: "CẢNH BÁO DỊ ỨNG: Không ghi nhận thành phần gây dị ứng phổ biến trong công thức được cung cấp.",
+                    ingredients: ["Trà đen hoặc trà xanh", "Chanh tươi", "Đường", "Nước lọc", "Đá viên", "Lá bạc hà"]
+                }
+            ]
+        }
+    ];
+
+
+    // CHUYỂN GIÁ THÀNH SỐ
+    function chuyenGia(gia) {
+        return Number(String(gia).replace(/[^\d]/g, "")) || 0;
+    }
+
+
+    // TẠO CÁC THẺ MÓN ĂN
+    function taoThucDon() {
+        const noiDung = document.getElementById("noiDungThucDon");
+
+        danhSachDuLieu.forEach(function(nhom) {
+            const section = document.createElement("section");
+            section.className = "muc-thuc-don";
+            section.id = nhom.id;
+
+            const title = document.createElement("h2");
+            title.textContent = nhom.danhMuc;
+
+            const grid = document.createElement("div");
+            grid.className = "luoi-mon";
+
+            nhom.mon.forEach(function(mon) {
+                const card = document.createElement("div");
+                card.className = "o-mon";
+
+                card.dataset.name = mon.name;
+                card.dataset.price = mon.price;
+                card.dataset.old = mon.old;
+                card.dataset.warning = mon.warning;
+                card.dataset.ingredients = mon.ingredients.join("|");
+
+                const img = document.createElement("img");
+                img.src = mon.image;
+                img.alt = mon.title;
+
+                const info = document.createElement("div");
+                info.className = "thong-tin-mon";
+
+                const name = document.createElement("h3");
+                name.textContent = mon.title;
+
+                const detail = document.createElement("button");
+                detail.type = "button";
+                detail.textContent = "Xem chi tiết";
+                detail.addEventListener("click", function() {
+                    moChiTiet(card);
+                });
+
+                const price = document.createElement("div");
+                price.className = "gia-mon";
+
+                const oldPrice = document.createElement("del");
+                oldPrice.textContent = mon.old;
+
+                const currentPrice = document.createElement("strong");
+                currentPrice.textContent = mon.price;
+
+                const addButton = document.createElement("button");
+                addButton.type = "button";
+                addButton.className = "nut-them-gio";
+                addButton.textContent = "+ Thêm vào giỏ hàng";
+
+                addButton.addEventListener("click", function() {
+                    themVaoGio(mon, addButton);
+                });
+
+                price.append(oldPrice, currentPrice);
+                info.append(name, detail, price, addButton);
+                card.append(img, info);
+                grid.appendChild(card);
+            });
+
+            section.append(title, grid);
+            noiDung.appendChild(section);
+        });
+
+        // COMBO
+        const combo = document.createElement("section");
+        combo.className = "muc-thuc-don";
+        combo.id = "combo";
+        combo.innerHTML = `
+            <h2>COMBO HẤP DẪN</h2>
+            <div class="combo-chua-co">
+                <p>CRISPY đang chuẩn bị những combo hấp dẫn.</p>
+                <p>Hãy quay lại sau nhé!</p>
+            </div>
+        `;
+        noiDung.appendChild(combo);
+    }
+
+
+    // THÊM MÓN VÀO GIỎ
+    function themVaoGio(mon, nut) {
+        let gioHang = JSON.parse(localStorage.getItem("crispyCart") || "[]");
+
+        const monTonTai = gioHang.find(function(item) {
+            return item.name === mon.name;
+        });
+
+        if (monTonTai) {
+            monTonTai.quantity = (Number(monTonTai.quantity) || 1) + 1;
+        } else {
+            gioHang.push({
+                name: mon.name,
+                title: mon.title,
+                price: chuyenGia(mon.price),
+                oldPrice: chuyenGia(mon.old),
+                image: mon.image,
+                quantity: 1,
+                selected: true
+            });
+        }
+
+        localStorage.setItem("crispyCart", JSON.stringify(gioHang));
+
+        capNhatSoMon();
+
+        nut.classList.add("da-them");
+        nut.textContent = "✓ Đã thêm vào giỏ";
+
+        setTimeout(function() {
+            nut.classList.remove("da-them");
+            nut.textContent = "+ Thêm vào giỏ hàng";
+        }, 1100);
+
+        hienThongBao("✓ Đã thêm " + mon.title + " vào giỏ hàng!");
+    }
+
+
+    // THÔNG BÁO
+    let thoiGianThongBao;
+
+    function hienThongBao(noiDung) {
+        const thongBao = document.getElementById("thongBaoGio");
+        thongBao.textContent = noiDung;
+        thongBao.classList.add("hien");
+
+        clearTimeout(thoiGianThongBao);
+
+        thoiGianThongBao = setTimeout(function() {
+            thongBao.classList.remove("hien");
+        }, 1800);
+    }
+
+
+    // CẬP NHẬT SỐ MÓN TRÊN HEADER
+    function capNhatSoMon() {
+        const gioHang = JSON.parse(localStorage.getItem("crispyCart") || "[]");
+
+        const soLuong = gioHang.reduce(function(tong, mon) {
+            return tong + (Number(mon.quantity) || 0);
+        }, 0);
+
+        document.getElementById("soMonGio").textContent = soLuong;
+    }
+
+
+    // XEM CHI TIẾT
+    function moChiTiet(mon) {
+        document.getElementById("tenChiTiet").textContent = mon.dataset.name;
+        document.getElementById("canhBao").textContent = mon.dataset.warning;
+        document.getElementById("giaChiTiet").textContent = mon.dataset.price;
+
+        const anh = mon.querySelector("img");
+        document.getElementById("anhChiTiet").src = anh.src;
+        document.getElementById("anhChiTiet").alt = anh.alt;
+
+        const danhSach = document.getElementById("thanhPhan");
+        danhSach.innerHTML = "";
+
+        mon.dataset.ingredients.split("|").forEach(function(item) {
+            const li = document.createElement("li");
+            li.textContent = item;
+            danhSach.appendChild(li);
+        });
+
+        document.getElementById("lopPhu").classList.add("hien");
+        document.body.classList.add("khoa-cuon");
+
+        requestAnimationFrame(function() {
+            document.querySelector(".hop-chi-tiet").scrollTop = 0;
+        });
+    }
+
+
+    // ĐÓNG CHI TIẾT
+    function dongChiTiet(event) {
+        if (!event || event.target.id === "lopPhu" ||
+            event.target.classList.contains("nut-dong")) {
+
+            document.getElementById("lopPhu").classList.remove("hien");
+            document.body.classList.remove("khoa-cuon");
+        }
+    }
+
+    document.addEventListener("keydown", function(event) {
+        if (event.key === "Escape") {
+            document.getElementById("lopPhu").classList.remove("hien");
+            document.body.classList.remove("khoa-cuon");
+        }
+    });
+
+
+    // DROPDOWN
+    const cacMenu = document.querySelectorAll(".timhieu, .thucdon-menu");
+
+    cacMenu.forEach(function(menu) {
+        menu.addEventListener("mouseenter", function() {
+            menu.classList.add("mo");
+        });
+
+        menu.addEventListener("mouseleave", function() {
+            menu.classList.remove("mo");
+        });
+    });
+
+
+    // KHỞI TẠO
+    taoThucDon();
+    capNhatSoMon();
+
+    window.addEventListener("storage", capNhatSoMon);
+
+    if ("scrollRestoration" in history) {
+        history.scrollRestoration = "manual";
+    }
+
+    window.addEventListener("load", function() {
+        if (!window.location.hash) {
+            window.scrollTo(0, 0);
+        }
+    });
+</script>
+
+</body>
+</html>
