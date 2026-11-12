@@ -1,0 +1,1379 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Giỏ hàng - CRISPY</title>
+<link rel="stylesheet" href="style.css">
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background: #fff8ed;
+    color: #382a22;
+    font-family: Arial, sans-serif;
+}
+
+/* =========================
+   BỐ CỤC CHÍNH
+========================= */
+
+.trang-gio-hang {
+    width: 94%;
+    max-width: 1450px;
+    margin: 40px auto 70px;
+}
+
+.tieu-de-gio {
+    margin-bottom: 25px;
+}
+
+.tieu-de-gio h1 {
+    color: #542b16;
+    font-size: 29px;
+    margin-bottom: 8px;
+}
+
+.tieu-de-gio p {
+    color: #80634f;
+    margin: 0;
+}
+
+.bo-cuc-gio {
+    display: grid;
+    grid-template-columns: minmax(0, 2fr) minmax(330px, .95fr);
+    gap: 28px;
+    align-items: start;
+}
+
+/* =========================
+   DANH SÁCH SẢN PHẨM
+========================= */
+
+.khung-danh-sach {
+    background: white;
+    border: 1px solid #eadbc7;
+    border-radius: 16px;
+    padding: 25px;
+}
+
+.dau-danh-sach {
+    display: grid;
+    grid-template-columns: 30px minmax(0, 1fr) 90px 110px 25px;
+    gap: 12px;
+    align-items: center;
+    padding-bottom: 18px;
+    border-bottom: 1px solid #eadbc7;
+    color: #542b16;
+    font-weight: bold;
+}
+
+input[type="checkbox"] {
+    width: 19px;
+    height: 19px;
+    accent-color: #e53935;
+    cursor: pointer;
+}
+
+.san-pham {
+    display: grid;
+    grid-template-columns: 30px 115px minmax(0, 1fr) 90px 110px 25px;
+    gap: 12px;
+    align-items: center;
+    padding: 22px 0;
+    border-bottom: 1px solid #eadbc7;
+}
+
+.anh-san-pham {
+    width: 115px;
+    height: 110px;
+    object-fit: cover;
+    border: 1px solid #eee0d2;
+    border-radius: 13px;
+}
+
+.thong-tin-san-pham h3 {
+    color: #542b16;
+    font-size: 16px;
+    line-height: 1.4;
+    margin: 0 0 8px;
+}
+
+.gia-don-vi {
+    color: #e53935;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.gia-cu {
+    color: #999;
+    font-size: 13px;
+    font-weight: normal;
+    text-decoration: line-through;
+    margin-left: 7px;
+}
+
+.so-luong {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid #eadbc7;
+    border-radius: 9px;
+    padding: 7px 5px;
+}
+
+.so-luong button {
+    border: none;
+    background: transparent;
+    color: #542b16;
+    font-size: 19px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.so-luong button:hover {
+    color: #e53935;
+}
+
+.so-luong span {
+    min-width: 20px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.thanh-tien-san-pham {
+    text-align: right;
+    font-weight: bold;
+    color: #542b16;
+    white-space: nowrap;
+}
+
+.nut-xoa {
+    border: none;
+    background: transparent;
+    color: #999;
+    font-size: 20px;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.nut-xoa:hover {
+    color: #e53935;
+    transform: scale(1.12);
+}
+
+/* GIỎ TRỐNG */
+
+.gio-trong {
+    text-align: center;
+    padding: 55px 15px;
+    color: #80634f;
+}
+
+.gio-trong .bieu-tuong {
+    font-size: 55px;
+    margin-bottom: 15px;
+}
+
+.gio-trong a {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 12px 25px;
+    border-radius: 25px;
+    background: #542b16;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.gio-trong a:hover {
+    background: #e53935;
+}
+
+/* =========================
+   ORDER SUMMARY
+========================= */
+
+.cot-tong-ket {
+    position: sticky;
+    top: 20px;
+}
+
+.khung-tong-ket {
+    background: white;
+    border: 1px solid #eadbc7;
+    border-radius: 18px;
+    padding: 25px;
+    box-shadow: 0 5px 22px rgba(84,43,22,.09);
+}
+
+.khung-tong-ket h2 {
+    color: #382a22;
+    font-size: 23px;
+    margin: 0 0 20px;
+}
+
+.thong-bao-giao-hang {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px;
+    margin-bottom: 20px;
+    border: 1px solid #75c9df;
+    border-radius: 12px;
+    background: #effaff;
+    color: #287d96;
+    font-size: 14px;
+}
+
+.thong-bao-giao-hang span {
+    line-height: 1.5;
+}
+
+.tom-tat-mon {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin: 14px 0;
+    font-size: 14px;
+}
+
+.tom-tat-mon span {
+    color: #542b16;
+    line-height: 1.4;
+}
+
+.tom-tat-mon strong {
+    color: #542b16;
+    white-space: nowrap;
+}
+
+.duong-ke {
+    border: none;
+    border-top: 1px solid #eadbc7;
+    margin: 20px 0;
+}
+
+.dong-tien {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 14px 0;
+    color: #80634f;
+    font-size: 15px;
+}
+
+.dong-tien strong {
+    color: #542b16;
+    white-space: nowrap;
+}
+
+.tong-cong {
+    color: #e53935;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.tong-cong strong {
+    color: #e53935;
+    font-size: 23px;
+}
+
+.nut-dat-ngay {
+    width: 100%;
+    padding: 15px;
+    margin-top: 15px;
+    border: none;
+    border-radius: 12px;
+    background: #542b16;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.nut-dat-ngay:hover {
+    background: #e53935;
+    transform: translateY(-2px);
+}
+
+.nut-dat-ngay:disabled {
+    background: #aaa;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.ghi-chu-nho {
+    text-align: center;
+    color: #999;
+    font-size: 12px;
+    line-height: 1.5;
+    margin: 13px 0 0;
+}
+
+/* =========================
+   MODAL ĐẶT HÀNG
+========================= */
+
+.lop-phu-dat-hang {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 100000;
+    background: rgba(0,0,0,.55);
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+}
+
+.lop-phu-dat-hang.hien {
+    display: flex;
+    animation: hienNen .25s ease;
+}
+
+.hop-dat-hang {
+    position: relative;
+    width: 100%;
+    max-width: 520px;
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 30px;
+    border-radius: 18px;
+    background: white;
+    box-shadow: 0 10px 40px rgba(0,0,0,.2);
+    animation: hienHop .3s ease;
+}
+
+.nut-dong-dat-hang {
+    position: absolute;
+    top: 12px;
+    right: 17px;
+    border: none;
+    background: none;
+    color: #80634f;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.hop-dat-hang h2 {
+    color: #542b16;
+    margin: 0 35px 8px 0;
+    font-size: 24px;
+}
+
+.mo-ta-form {
+    color: #80634f;
+    font-size: 14px;
+    line-height: 1.5;
+    margin-bottom: 23px;
+}
+
+.hop-dat-hang .nhom-nhap {
+    margin-bottom: 16px;
+}
+
+.hop-dat-hang .nhom-nhap label {
+    display: block;
+    margin-bottom: 8px;
+    color: #542b16;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.hop-dat-hang input,
+.hop-dat-hang textarea,
+.hop-dat-hang select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #dfcbb7;
+    border-radius: 9px;
+    outline: none;
+    background: #fffdf9;
+    color: #382a22;
+    font-family: inherit;
+    font-size: 14px;
+}
+
+.hop-dat-hang input:focus,
+.hop-dat-hang textarea:focus,
+.hop-dat-hang select:focus {
+    border-color: #d99a25;
+    box-shadow: 0 0 0 2px rgba(217,154,37,.12);
+}
+
+.hop-dat-hang textarea {
+    min-height: 85px;
+    resize: vertical;
+}
+
+.nut-xac-nhan-dat-hang {
+    width: 100%;
+    padding: 15px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 30px;
+    background: #542b16;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.nut-xac-nhan-dat-hang:hover {
+    background: #e53935;
+}
+
+/* =========================
+   THÔNG BÁO THÀNH CÔNG
+========================= */
+
+.xac-nhan-thanh-cong {
+    display: none;
+    text-align: center;
+    padding: 20px 5px;
+}
+
+.bieu-tuong-thanh-cong {
+    width: 65px;
+    height: 65px;
+    margin: 0 auto 18px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #e7f5e9;
+    color: #278143;
+    font-size: 35px;
+    font-weight: bold;
+    animation: phongTo .4s ease;
+}
+
+.xac-nhan-thanh-cong h2 {
+    margin: 0 0 12px;
+    color: #28743b;
+}
+
+.xac-nhan-thanh-cong p {
+    color: #80634f;
+    line-height: 1.6;
+}
+
+.xac-nhan-thanh-cong button {
+    margin-top: 15px;
+    padding: 13px 30px;
+    border: none;
+    border-radius: 25px;
+    background: #542b16;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.xac-nhan-thanh-cong button:hover {
+    background: #e53935;
+}
+
+@keyframes hienNen {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes hienHop {
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(.97);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes phongTo {
+    from {
+        opacity: 0;
+        transform: scale(.5);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 1050px) {
+    .bo-cuc-gio {
+        grid-template-columns: minmax(0, 1.5fr) minmax(290px, 1fr);
+        gap: 18px;
+    }
+
+    .khung-danh-sach,
+    .khung-tong-ket {
+        padding: 18px;
+    }
+
+    .san-pham {
+        grid-template-columns: 25px 90px minmax(0,1fr) 75px 90px 22px;
+        gap: 8px;
+    }
+
+    .anh-san-pham {
+        width: 90px;
+        height: 90px;
+    }
+}
+
+@media (max-width: 800px) {
+    .bo-cuc-gio {
+        grid-template-columns: 1fr;
+    }
+
+    .cot-tong-ket {
+        position: static;
+    }
+}
+
+@media (max-width: 550px) {
+    .trang-gio-hang {
+        width: 96%;
+        margin-top: 25px;
+    }
+
+    .tieu-de-gio h1 {
+        font-size: 24px;
+    }
+
+    .khung-danh-sach,
+    .khung-tong-ket {
+        padding: 14px;
+    }
+
+    .dau-danh-sach {
+        grid-template-columns: 25px 1fr 65px 20px;
+        gap: 5px;
+        font-size: 12px;
+    }
+
+    .dau-danh-sach .cot-so-luong {
+        display: none;
+    }
+
+    .san-pham {
+        grid-template-columns: 25px 75px minmax(0,1fr) 22px;
+        gap: 8px;
+        padding: 17px 0;
+    }
+
+    .anh-san-pham {
+        width: 75px;
+        height: 75px;
+    }
+
+    .thong-tin-san-pham h3 {
+        font-size: 13px;
+    }
+
+    .gia-don-vi {
+        font-size: 14px;
+    }
+
+    .so-luong {
+        grid-column: 3;
+        justify-content: flex-start;
+        width: fit-content;
+        margin-top: 7px;
+    }
+
+    .thanh-tien-san-pham {
+        grid-column: 3;
+        text-align: left;
+        margin-top: 7px;
+        font-size: 14px;
+    }
+
+    .nut-xoa {
+        grid-column: 4;
+        grid-row: 1;
+    }
+
+    .hop-dat-hang {
+        padding: 25px 20px;
+    }
+}
+</style>
+</head>
+
+<body>
+<div id="dau-trang"></div>
+
+<!-- HEADER -->
+<header>
+    <a href="12A10.html#dau-trang">
+        <img src="FF Logo.png" alt="Logo CRISPY">
+    </a>
+
+    <nav>
+        <a href="12A10.html#dau-trang">Trang chủ</a>
+
+        <div class="timhieu">
+            <a href="12A10.html#gioithieu">
+                Tìm hiểu <span class="mui-ten-menu">▾</span>
+            </a>
+            <div class="khung-thong-tin">
+                <a href="12A10.html#gioithieu">Giới thiệu</a>
+                <a href="12A10.html#nhacungcap">Nhà cung cấp</a>
+                <a href="12A10.html#antoan">An toàn thực phẩm</a>
+            </div>
+        </div>
+
+        <div class="thucdon-menu">
+            <a href="TD.html">
+                Thực đơn <span class="mui-ten-menu">▾</span>
+            </a>
+            <div class="khung-thuc-don">
+                <a href="TD.html#ga-ran">Gà rán</a>
+                <a href="TD.html#hamburger">Hamburger</a>
+                <a href="TD.html#khoai-tay-chien">Khoai tây chiên</a>
+                <a href="TD.html#my-y">Mỳ Ý</a>
+                <a href="TD.html#salad">Salad</a>
+                <a href="TD.html#do-uong">Đồ uống</a>
+                <a href="TD.html#combo">Combo hấp dẫn</a>
+            </div>
+        </div>
+
+        <a href="LH.html">Liên hệ</a>
+
+        <a href="DM.html" class="datmon">
+            <span class="icon">🛒</span>
+            <span class="text">
+                <small>Thức ăn nhanh</small>
+                Đặt Món
+            </span>
+            <span class="so-mon-gio" id="soMonGio">0</span>
+        </a>
+    </nav>
+</header>
+
+
+<!-- NỘI DUNG GIỎ HÀNG -->
+<main class="trang-gio-hang">
+
+    <div class="tieu-de-gio">
+        <h1>GIỎ HÀNG CỦA BẠN</h1>
+        <p>Kiểm tra sản phẩm và hoàn tất đơn hàng tại CRISPY.</p>
+    </div>
+
+    <div class="bo-cuc-gio">
+
+        <!-- DANH SÁCH MÓN -->
+        <section class="khung-danh-sach">
+
+            <div class="dau-danh-sach">
+                <label>
+                    <input type="checkbox" id="chonTatCa">
+                </label>
+
+                <span>Chọn tất cả</span>
+                <span class="cot-so-luong" style="text-align: center">Số lượng</span>
+                <span style="text-align: right">Tổng</span>
+				<span></span>
+
+            </div>
+
+            <div id="danhSachMon"></div>
+
+        </section>
+
+
+        <!-- ORDER SUMMARY -->
+        <aside class="cot-tong-ket">
+
+            <section class="khung-tong-ket">
+
+                <h2>Order summary</h2>
+
+                <div class="thong-bao-giao-hang">
+                    🚚
+                    <span>
+                        <strong>CRISPY</strong><br>
+                        Kiểm tra đơn hàng trước khi đặt.
+                    </span>
+                </div>
+
+                <div id="tomTatMon"></div>
+
+                <hr class="duong-ke">
+
+                <div class="dong-tien">
+                    <span>Tạm tính</span>
+                    <strong id="tamTinh">0đ</strong>
+                </div>
+
+                <div class="dong-tien">
+                    <span>Phí giao hàng</span>
+                    <strong id="phiGiaoHang">Miễn phí</strong>
+                </div>
+
+                <hr class="duong-ke">
+
+                <div class="dong-tien tong-cong">
+                    <span>Tổng cộng</span>
+                    <strong id="tongCong">0đ</strong>
+                </div>
+
+                <button type="button"
+                        class="nut-dat-ngay"
+                        id="nutDatNgay"
+                        onclick="moFormDatHang()"
+                        disabled>
+                    ĐẶT HÀNG
+                </button>
+
+                <p class="ghi-chu-nho">Tổng tiền được tính dựa trên những món đã chọn.</p>
+
+            </section>
+
+        </aside>
+
+    </div>
+</main>
+
+
+<!-- MODAL FORM ĐẶT HÀNG -->
+<div class="lop-phu-dat-hang" id="lopPhuDatHang">
+
+    <div class="hop-dat-hang">
+
+        <button class="nut-dong-dat-hang"
+                type="button"
+                onclick="dongFormDatHang()">×</button>
+
+        <!-- FORM THÔNG TIN -->
+        <div id="noiDungFormDatHang">
+
+            <h2>Thông tin đặt hàng</h2>
+
+            <p class="mo-ta-form">
+                Vui lòng kiểm tra và điền thông tin nhận hàng.
+            </p>
+
+            <form id="formDatMon">
+
+                <div class="nhom-nhap">
+                    <label for="hoTen">Họ và tên *</label>
+                    <input type="text"
+                           id="hoTen"
+                           placeholder="Nhập họ và tên"
+                           required>
+                </div>
+
+                <div class="nhom-nhap">
+                    <label for="soDienThoai">Số điện thoại *</label>
+                    <input type="tel"
+                           id="soDienThoai"
+                           placeholder="Nhập số điện thoại"
+                           pattern="[0-9+\s.-]{9,15}"
+                           required>
+                </div>
+
+                <div class="nhom-nhap">
+                    <label for="diaChi">Địa chỉ nhận hàng *</label>
+                    <input type="text"
+                           id="diaChi"
+                           placeholder="Số nhà, đường, phường/xã..."
+                           required>
+                </div>
+
+                <div class="nhom-nhap">
+                    <label for="ghiChu">Ghi chú đơn hàng</label>
+                    <textarea id="ghiChu"
+                              placeholder="Yêu cầu thêm (nếu có)..."></textarea>
+                </div>
+
+                <div class="nhom-nhap">
+                    <label for="phuongThuc">Phương thức thanh toán</label>
+                    <select id="phuongThuc">
+                        <option value="COD">
+                            Thanh toán khi nhận hàng (COD)
+                        </option>
+                        <option value="Chuyển khoản">
+                            Chuyển khoản
+                        </option>
+                    </select>
+                </div>
+
+                <button type="submit" class="nut-xac-nhan-dat-hang">
+                    XÁC NHẬN ĐẶT HÀNG
+                </button>
+
+            </form>
+        </div>
+
+
+        <!-- THÔNG BÁO THÀNH CÔNG -->
+        <div class="xac-nhan-thanh-cong" id="xacNhanThanhCong">
+
+            <div class="bieu-tuong-thanh-cong">✓</div>
+
+            <h2>Đặt hàng thành công!</h2>
+
+            <p>Đơn hàng đã được ghi nhận.</p>
+            <p>Cảm ơn bạn đã lựa chọn CRISPY.</p>
+
+            <button type="button" onclick="dongModalThanhCong()">
+                HOÀN TẤT
+            </button>
+
+        </div>
+
+    </div>
+</div>
+
+
+<!-- FOOTER -->
+
+<footer class="footer">
+    <div class="footer-container">
+
+        <div class="footer-left">
+
+            <div class="footer-column">
+                <h3>KHÁM PHÁ CRISPY</h3>
+                <a href="12A10.html#dau-trang">Trang chủ</a>
+                <a href="12A10.html#gioithieu">Giới thiệu</a>
+                <a href="12A10.html#nhacungcap">Nhà cung cấp</a>
+                <a href="12A10.html#antoan">An toàn thực phẩm</a>
+                <a href="LH.html">Liên hệ</a>
+            </div>
+
+            <div class="footer-column">
+                <h3>THỰC ĐƠN</h3>
+                <a href="TD.html#ga-ran">Gà rán</a>
+                <a href="TD.html#hamburger">Hamburger</a>
+                <a href="TD.html#khoai-tay-chien">Khoai tây chiên</a>
+                <a href="TD.html#my-y">Mỳ Ý</a>
+                <a href="TD.html#salad">Salad</a>
+                <a href="TD.html#do-uong">Đồ uống</a>
+                <a href="TD.html#combo">Combo hấp dẫn</a>
+            </div>
+
+            <div class="footer-column">
+                <h3>THÀNH VIÊN NHÓM</h3>
+                <p>36 – Huỳnh Phúc Thịnh</p>
+                <p>18 – Ngô Quý Long</p>
+                <p>35 – Thạch Nguyễn Ngọc Thảo</p>
+                <p>42 – Đinh Đào Duy Tùng</p>
+            </div>
+
+        </div>
+
+        <div class="footer-about">
+            <h3>VỀ CRISPY</h3>
+
+            <p>
+                CRISPY – FAST FOOD & DRINKS mang đến
+                những món ăn nhanh và đồ uống thơm ngon,
+                hấp dẫn.
+            </p>
+
+            <p class="footer-slogan">
+                "Ngon từng món, mát từng ngụm, vui trọn khoảnh khắc!"
+            </p>
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+        <p>© 2026 CRISPY – FAST FOOD & DRINKS</p>
+        <p>Website được thực hiện bởi nhóm học sinh Lớp: 12A10</p>
+    </div>
+</footer>
+
+<!-- NÚT CUỘN LÊN ĐẦU TRANG -->
+<a href="#dau-trang" class="len-dau" title="Lên đầu trang">
+    <span></span>
+</a>
+
+<script>
+// ======================================
+// KHỞI TẠO GIỎ HÀNG
+// ======================================
+
+let gioHang = [];
+
+try {
+    gioHang = JSON.parse(
+        localStorage.getItem("crispyCart") || "[]"
+    );
+
+    if (!Array.isArray(gioHang)) {
+        gioHang = [];
+    }
+} catch (error) {
+    gioHang = [];
+}
+
+const danhSachMon = document.getElementById("danhSachMon");
+const chonTatCa = document.getElementById("chonTatCa");
+const nutDatNgay = document.getElementById("nutDatNgay");
+
+
+// ======================================
+// XỬ LÝ GIÁ TIỀN
+// ======================================
+
+function chuyenGia(gia) {
+    if (typeof gia === "number") {
+        return gia;
+    }
+
+    return Number(
+        String(gia || "").replace(/[^\d]/g, "")
+    ) || 0;
+}
+
+function dinhDangTien(gia) {
+    return Number(gia).toLocaleString("vi-VN") + "đ";
+}
+
+function luuGioHang() {
+    localStorage.setItem(
+        "crispyCart",
+        JSON.stringify(gioHang)
+    );
+}
+
+
+// ======================================
+// CẬP NHẬT SỐ MÓN TRÊN HEADER
+// ======================================
+
+function capNhatSoMon() {
+    const soLuong = gioHang.reduce(function(tong, mon) {
+        return tong + (Number(mon.quantity) || 1);
+    }, 0);
+
+    document.getElementById("soMonGio").textContent = soLuong;
+}
+
+
+// ======================================
+// HIỂN THỊ GIỎ HÀNG
+// ======================================
+
+function hienThiGioHang() {
+    danhSachMon.innerHTML = "";
+
+    if (gioHang.length === 0) {
+
+        danhSachMon.innerHTML = `
+            <div class="gio-trong">
+                <div class="bieu-tuong">🛒</div>
+                <h3>Giỏ hàng đang trống!</h3>
+                <p style="text-align: center">Hãy chọn những món ăn yêu thích của bạn.</p>
+                <a href="TD.html">Khám phá thực đơn</a>
+            </div>
+        `;
+
+        chonTatCa.checked = false;
+        chonTatCa.disabled = true;
+
+        capNhatTongTien();
+        capNhatSoMon();
+
+        return;
+    }
+
+    chonTatCa.disabled = false;
+
+    gioHang.forEach(function(mon, index) {
+
+        const gia = chuyenGia(mon.price);
+        const giaCu = chuyenGia(mon.oldPrice);
+        const soLuong = Math.max(
+            1,
+            Number(mon.quantity) || 1
+        );
+
+        const card = document.createElement("div");
+        card.className = "san-pham";
+
+        // Checkbox
+        const checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        checkbox.checked = mon.selected !== false;
+
+        checkbox.addEventListener("change", function() {
+            gioHang[index].selected = checkbox.checked;
+
+            luuGioHang();
+            capNhatTongTien();
+        });
+
+        // Hình ảnh
+        const img = document.createElement("img");
+        img.className = "anh-san-pham";
+        img.src = mon.image || "";
+        img.alt = mon.name || mon.title || "Món ăn";
+
+        // Thông tin
+        const info = document.createElement("div");
+        info.className = "thong-tin-san-pham";
+
+        const title = document.createElement("h3");
+        title.textContent =
+            mon.name || mon.title || "Món ăn";
+
+        const price = document.createElement("div");
+        price.className = "gia-don-vi";
+        price.textContent = dinhDangTien(gia);
+
+        if (giaCu > gia) {
+            const old = document.createElement("span");
+            old.className = "gia-cu";
+            old.textContent = dinhDangTien(giaCu);
+            price.appendChild(old);
+        }
+
+        info.append(title, price);
+
+        // Số lượng
+        const quantityBox = document.createElement("div");
+        quantityBox.className = "so-luong";
+
+        const minus = document.createElement("button");
+        minus.type = "button";
+        minus.textContent = "−";
+        minus.addEventListener("click", function() {
+            thayDoiSoLuong(index, -1);
+        });
+
+        const number = document.createElement("span");
+        number.textContent = soLuong;
+
+        const plus = document.createElement("button");
+        plus.type = "button";
+        plus.textContent = "+";
+        plus.addEventListener("click", function() {
+            thayDoiSoLuong(index, 1);
+        });
+
+        quantityBox.append(minus, number, plus);
+
+        // Thành tiền
+        const subtotal = document.createElement("div");
+        subtotal.className = "thanh-tien-san-pham";
+        subtotal.textContent =
+            dinhDangTien(gia * soLuong);
+
+        // Xóa món
+        const remove = document.createElement("button");
+        remove.type = "button";
+        remove.className = "nut-xoa";
+        remove.textContent = "🗑";
+        remove.title = "Xóa sản phẩm";
+
+        remove.addEventListener("click", function() {
+            xoaMon(index);
+        });
+
+        card.append(
+            checkbox,
+            img,
+            info,
+            quantityBox,
+            subtotal,
+            remove
+        );
+
+        danhSachMon.appendChild(card);
+    });
+
+    capNhatTongTien();
+    capNhatSoMon();
+}
+
+
+// ======================================
+// TÍNH TỔNG TIỀN VÀ ORDER SUMMARY
+// ======================================
+
+function capNhatTongTien() {
+
+    let tongTien = 0;
+    let soSanPham = 0;
+
+    gioHang.forEach(function(mon) {
+
+        if (mon.selected !== false) {
+
+            const gia = chuyenGia(mon.price);
+            const soLuong = Number(mon.quantity) || 1;
+
+            tongTien += gia * soLuong;
+            soSanPham += soLuong;
+        }
+    });
+
+    document.getElementById("tamTinh").textContent =
+        dinhDangTien(tongTien);
+
+    document.getElementById("phiGiaoHang").textContent =
+        "Miễn phí";
+
+    document.getElementById("tongCong").textContent =
+        dinhDangTien(tongTien);
+
+    nutDatNgay.disabled = soSanPham === 0;
+
+    // Đồng bộ checkbox chọn tất cả
+    chonTatCa.checked =
+        gioHang.length > 0 &&
+        gioHang.every(function(mon) {
+            return mon.selected !== false;
+        });
+
+    // Danh sách món trong Order Summary
+    const tomTat = document.getElementById("tomTatMon");
+    tomTat.innerHTML = "";
+
+    gioHang.forEach(function(mon) {
+
+        if (mon.selected === false) {
+            return;
+        }
+
+        const dong = document.createElement("div");
+        dong.className = "tom-tat-mon";
+
+        const ten = document.createElement("span");
+        ten.textContent =
+            (Number(mon.quantity) || 1) +
+            "x " +
+            (mon.name || mon.title || "Món ăn");
+
+        const gia = document.createElement("strong");
+        gia.textContent = dinhDangTien(
+            chuyenGia(mon.price) *
+            (Number(mon.quantity) || 1)
+        );
+
+        dong.append(ten, gia);
+        tomTat.appendChild(dong);
+    });
+}
+
+
+// ======================================
+// CHỌN TẤT CẢ
+// ======================================
+
+chonTatCa.addEventListener("change", function() {
+
+    gioHang.forEach(function(mon) {
+        mon.selected = chonTatCa.checked;
+    });
+
+    luuGioHang();
+    hienThiGioHang();
+});
+
+
+// ======================================
+// TĂNG / GIẢM SỐ LƯỢNG
+// ======================================
+
+function thayDoiSoLuong(index, thayDoi) {
+
+    gioHang[index].quantity =
+        (Number(gioHang[index].quantity) || 1) + thayDoi;
+
+    if (gioHang[index].quantity <= 0) {
+        gioHang.splice(index, 1);
+    }
+
+    luuGioHang();
+    hienThiGioHang();
+}
+
+
+// ======================================
+// XÓA SẢN PHẨM
+// ======================================
+
+function xoaMon(index) {
+
+    gioHang.splice(index, 1);
+
+    luuGioHang();
+    hienThiGioHang();
+}
+
+
+// ======================================
+// MỞ FORM ĐẶT HÀNG
+// ======================================
+
+function moFormDatHang() {
+
+    const coMonDuocChon = gioHang.some(function(mon) {
+        return mon.selected !== false;
+    });
+
+    if (!coMonDuocChon) {
+        return;
+    }
+
+    document.getElementById("noiDungFormDatHang").style.display =
+        "block";
+
+    document.getElementById("xacNhanThanhCong").style.display =
+        "none";
+
+    document.getElementById("lopPhuDatHang").classList.add("hien");
+}
+
+
+// ======================================
+// ĐÓNG FORM
+// ======================================
+
+function dongFormDatHang() {
+
+    document.getElementById("lopPhuDatHang")
+        .classList.remove("hien");
+}
+
+
+// ======================================
+// XÁC NHẬN ĐẶT HÀNG
+// ======================================
+
+document.getElementById("formDatMon").addEventListener(
+    "submit",
+    function(event) {
+
+        event.preventDefault();
+
+        // Chuyển sang màn hình thành công
+        document.getElementById("noiDungFormDatHang").style.display =
+            "none";
+
+        document.getElementById("xacNhanThanhCong").style.display =
+            "block";
+
+        // Reset giỏ hàng
+        gioHang = [];
+
+        localStorage.removeItem("crispyCart");
+
+        // Cập nhật giao diện giỏ hàng và tổng tiền
+        hienThiGioHang();
+    }
+);
+
+
+// ======================================
+// HOÀN TẤT ĐẶT HÀNG
+// ======================================
+
+function dongModalThanhCong() {
+
+    document.getElementById("lopPhuDatHang")
+        .classList.remove("hien");
+
+    document.getElementById("formDatMon").reset();
+
+    document.getElementById("noiDungFormDatHang").style.display =
+        "block";
+
+    document.getElementById("xacNhanThanhCong").style.display =
+        "none";
+}
+
+
+// ======================================
+// CLICK BÊN NGOÀI ĐỂ ĐÓNG MODAL
+// ======================================
+
+document.getElementById("lopPhuDatHang")
+    .addEventListener("click", function(event) {
+
+        if (event.target === this) {
+            dongFormDatHang();
+        }
+    });
+
+
+// ======================================
+// DROPDOWN MENU
+// ======================================
+
+const cacMenu = document.querySelectorAll(
+    ".timhieu, .thucdon-menu"
+);
+
+cacMenu.forEach(function(menu) {
+
+    menu.addEventListener("mouseenter", function() {
+        menu.classList.add("mo");
+    });
+
+    menu.addEventListener("mouseleave", function() {
+        menu.classList.remove("mo");
+    });
+});
+
+
+// ======================================
+// KHỞI TẠO TRANG
+// ======================================
+
+if ("scrollRestoration" in history) {
+    history.scrollRestoration = "manual";
+}
+
+window.addEventListener("load", function() {
+
+    if (!window.location.hash) {
+        window.scrollTo(0, 0);
+    }
+});
+
+hienThiGioHang();
+
+
+// Đồng bộ nếu giỏ hàng thay đổi ở tab khác
+window.addEventListener("storage", function(event) {
+
+    if (event.key === "crispyCart") {
+
+        try {
+            gioHang = JSON.parse(
+                localStorage.getItem("crispyCart") || "[]"
+            );
+
+            if (!Array.isArray(gioHang)) {
+                gioHang = [];
+            }
+        } catch (error) {
+            gioHang = [];
+        }
+
+        hienThiGioHang();
+    }
+});
+
+</script>
+
+</body>
+</html>
